@@ -1,0 +1,76 @@
+* {
+  box-sizing: border-box;
+}
+a:-webkit-any-link {
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 600;
+}
+html,
+body,
+.full {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+html {
+  overflow: hidden;
+}
+body {
+  overflow: auto;
+}
+
+.branding-panel {
+  height: 100%;
+  background: url("https://svgshare.com/i/8PV.svg"),
+    linear-gradient(135deg, #127cbf 0%, #094d9c 100%);
+}
+
+/* .already-have-account {
+  margin-top: 20px;
+} */
+.already-have-account .links {
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 10px;
+}
+.links {
+  color: #4da3d4;
+}
+/* .links:visited {
+  color: #4da3d4;
+} */
+@media (max-width: 767px) {
+  .left-block {
+    display: none;
+  }
+}
+@media (max-width: 480px) {
+  .right-block {
+    padding: 15px;
+  }
+}
+/*
+  .form-field-set {
+    min-height: inherit;
+    padding: 10px 0 20px;
+  }
+  .form-field-set .flex-center {
+    display: block;
+  }
+  .already-have-account {
+    margin-top: 0;
+  }
+  .form-group mat-icon {
+    display: none;
+  }
+  .form-group mat-form-field {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0%;
+  }
+  mat-form-field {
+    width: 100%;
+  }
+} */
