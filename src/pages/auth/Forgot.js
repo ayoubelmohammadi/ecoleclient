@@ -2,7 +2,10 @@ import React from "react";
 import {connect} from "react-redux";
 
 // Redux Actions
-import {changePassword as ChangePasswordAction, sendResetEmail as SendResetAction} from "../../redux/actions/actions.js";
+import {
+  changePassword as ChangePasswordAction,
+  sendResetEmail as SendResetAction
+} from "../../redux/actions/actions.js";
 
 // Material-UI components
 import Grid from "@material-ui/core/Grid";

@@ -8,7 +8,6 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import ForgotPassword from "./pages/auth/Forgot";
 import PrivateRoute from "./components/auth/PrivateRoute";
-import EquilibrePage from "./pages/EquilibrePage";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
 import clsx from "clsx";
@@ -26,7 +25,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import BubbleChartIcon from "@material-ui/icons/BubbleChart";
 import ListItemText from "@material-ui/core/ListItemText";
 import {makeStyles, useTheme} from "@material-ui/core/styles";
-import DepenseDetailsPage from "./pages/DepenseDetailsPage";
+import Eleve from "./pages/eleve/Eleve";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -95,7 +94,7 @@ export default function App() {
         return token && token.length > 0;
     }
     const handleDrawerOpen = () => {
-        setOpen(true && hasAuth());
+        setOpen( hasAuth());
     };
     const handleDrawerClose = () => {
         setOpen(false);
@@ -171,14 +170,7 @@ export default function App() {
                         <PrivateRoute
                             exact
                             path="/eleve"
-                            component={EquilibrePage}
-                            canActivate={() => hasAuth()}
-                        />
-
-                        <PrivateRoute
-                            exact
-                            path="/depense/:id"
-                            component={DepenseDetailsPage}
+                            component={Eleve}
                             canActivate={() => hasAuth()}
                         />
                         <Route exact path="/login" component={Login}/>

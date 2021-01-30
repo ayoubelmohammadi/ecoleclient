@@ -2,7 +2,12 @@ import React from "react";
 import {connect} from "react-redux";
 
 // Redux Actions
-import {createAccount, sendVerificationEmail, sendVerificationPhone, verifyEmailAddress} from "../../redux/actions/actions.js";
+import {
+  createAccount,
+  sendVerificationEmail,
+  sendVerificationPhone,
+  verifyEmailAddress
+} from "../../redux/actions/actions.js";
 
 // Material-UI components
 import Grid from "@material-ui/core/Grid";
@@ -111,7 +116,7 @@ class Register extends React.Component {
   }
 
   validPhone(inptxt) {
-    return inptxt && inptxt.length == 10 && inptxt.match(PHONE_REGEX);
+    return inptxt && inptxt.length === 10 && inptxt.match(PHONE_REGEX);
   }
   sendVerificationPhone() {
     this.props.sendVerificationPhone(this.state.phone);
