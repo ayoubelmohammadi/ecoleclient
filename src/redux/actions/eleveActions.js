@@ -1,20 +1,14 @@
 import axios from "axios";
 import {ELEVE_BASE_URL} from "../../config/apiConfig";
 import qs from "qs";
+import {onError, onFetch} from "./actions";
 
 export const FETCH_ELEVE_SUCCESS = "FETCH_ELEVE_SUCCESS";
 export const ERROR_GENERATED = "ERROR_GENERATED";
 export const LOADING_STATUS_CHANGED = "LOADING_STATUS_CHANGED";
-const onError = (error) => dispatch => {
-    dispatch({type: ERROR_GENERATED, error});
-    return error;
-};
 
-const onFetch = (loading) => dispatch => {
-    dispatch({type: LOADING_STATUS_CHANGED, payload: loading});
-}
 
-export  function fetchEleves(params) {
+export function fetchEleves(params) {
     return async dispatch => {
         function onSuccess(success) {
             dispatch({type: FETCH_ELEVE_SUCCESS, payload: success});
@@ -66,7 +60,7 @@ export function deleteEleves(params, ids) {
     }
 }
 
-export  function saveEleve(data) {
+export function saveEleve(data) {
     return async dispatch => {
         function onSuccess() {
             return 1

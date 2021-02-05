@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
         right: theme.spacing(2),
     }
 }));
-export default function EleveAddd() {
+export default function EleveAdd() {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = () => {

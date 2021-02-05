@@ -26,6 +26,7 @@ import BubbleChartIcon from "@material-ui/icons/BubbleChart";
 import ListItemText from "@material-ui/core/ListItemText";
 import {makeStyles, useTheme} from "@material-ui/core/styles";
 import Eleve from "./pages/eleve/Eleve";
+import Years from "./pages/education/Years";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -94,7 +95,7 @@ export default function App() {
         return token && token.length > 0;
     }
     const handleDrawerOpen = () => {
-        setOpen( hasAuth());
+        setOpen(hasAuth());
     };
     const handleDrawerClose = () => {
         setOpen(false);
@@ -150,6 +151,10 @@ export default function App() {
                             <ListItemIcon> <BubbleChartIcon/></ListItemIcon>
                             <ListItemText primary={'Eleve'}/>
                         </ListItem>
+                        <ListItem button component={Link} to="/annee" selected>
+                            <ListItemIcon> <BubbleChartIcon/></ListItemIcon>
+                            <ListItemText primary={'Année scolaire'}/>
+                        </ListItem>
                     </List>
                     <Divider/>
                 </Drawer>
@@ -169,8 +174,14 @@ export default function App() {
                         />
                         <PrivateRoute
                             exact
+                            path="/annee"
+                            component={Years}
+                            canActivate={() => hasAuth()}
+                        />
+                        <PrivateRoute
+                            exact
                             path="/eleve"
-                            component={Eleve}
+                            component={Home}
                             canActivate={() => hasAuth()}
                         />
                         <Route exact path="/login" component={Login}/>

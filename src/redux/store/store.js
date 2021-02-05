@@ -3,6 +3,7 @@ import {authReducer} from "../reducers/reducers.js";
 import thunk from "redux-thunk";
 import {eleveReducer} from "../reducers/eleveReducer";
 import {tuteurReducer} from "../reducers/tuteurReducer";
+import {schoolReducer} from "../reducers/schoolReducer";
 
 export const initStore = {
     authentication: {
@@ -13,7 +14,8 @@ export const initStore = {
 export const Reducer = combineReducers({
     authentication: authReducer,
     eleves: eleveReducer,
-    tuteurs: tuteurReducer
+    tuteurs: tuteurReducer,
+    school: schoolReducer
 });
 export const store = createStore(Reducer, initStore, compose(
     applyMiddleware(thunk),
