@@ -60,3 +60,21 @@ R
 "src/redux/actions/tuteurActions.js,0\8\0857bb8d093cf94c8863bf1ea5541ff194800904
 U
 %src/components/eleve/EleveAddSteps.js,3\e\3e0467e1443d277f5a4c5d57f713cc9c31380f0a
+\
+,src/components/education/years/YearDialog.js,a\0\a07d8f39b2c57ac4817e7f0897bba91f0b7b2237
+S
+#src/redux/reducers/schoolReducer.js,7\4\743965302a48d9c6e371c6dae026075b1acab04b
+R
+"src/redux/actions/schoolActions.js,b\3\b3725b8949353604c1f803441a0693fda7bc0a59
+R
+"src/components/app/DeleteDialog.js,e\9\e9880f085b95d42f4b252ed5e0cb38f64232d0a6
+P
+ src/components/app/PageHeader.js,2\b\2bc2ebe1573e6315b2ac785228137e6ba2cbdd28
+O
+src/components/app/DataTable.js,3\b\3b624fd8440ce035a7b3c5b930edc5ba7025c941
+P
+ src/components/eleve/EleveAdd.js,3\7\37f10c6a7d7984c392fccc7daf33550098c711fa
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+[
++src/components/education/years/YearTable.js,2\e\2e4cce4387d983d4864011ada2e29f60763bd69a
