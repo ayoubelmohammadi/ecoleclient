@@ -58,7 +58,5 @@ R
 "src/components/eleve/EleveTable.js,f\6\f616b102b1829a280825140901eef326352b9a36
 R
 "src/redux/actions/tuteurActions.js,0\8\0857bb8d093cf94c8863bf1ea5541ff194800904
-Q
-!src/components/eleve/EleveAddd.js,e\4\e429f066219b5dcdc0fda297d0f2f47825cfb8bd
 U
 %src/components/eleve/EleveAddSteps.js,3\e\3e0467e1443d277f5a4c5d57f713cc9c31380f0a

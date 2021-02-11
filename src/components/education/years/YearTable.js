@@ -30,7 +30,6 @@ export default function YearTable() {
         <Paper>
             <DataTable
                 title={"Supprimer Année scolaire"}
-
                 rows={years}
                 columns={columns}
                 toolbar={true}
