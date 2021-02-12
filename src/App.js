@@ -27,6 +27,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import {makeStyles, useTheme} from "@material-ui/core/styles";
 import Eleve from "./pages/eleve/Eleve";
 import Years from "./pages/education/Years";
+import Tutor from "./pages/eleve/Tutor";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -147,13 +148,17 @@ export default function App() {
                             <ListItemText primary={'Accueil'}/>
                         </ListItem>
                         <Divider/>
+                        <ListItem button component={Link} to="/tutor" selected>
+                            <ListItemIcon> <BubbleChartIcon/></ListItemIcon>
+                            <ListItemText primary={'Tuteurs'}/>
+                        </ListItem>
                         <ListItem button component={Link} to="/eleve" selected>
                             <ListItemIcon> <BubbleChartIcon/></ListItemIcon>
-                            <ListItemText primary={'Eleve'}/>
+                            <ListItemText primary={'Eleves'}/>
                         </ListItem>
                         <ListItem button component={Link} to="/annee" selected>
                             <ListItemIcon> <BubbleChartIcon/></ListItemIcon>
-                            <ListItemText primary={'Année scolaire'}/>
+                            <ListItemText primary={'Années scolaire'}/>
                         </ListItem>
                     </List>
                     <Divider/>
@@ -181,7 +186,13 @@ export default function App() {
                         <PrivateRoute
                             exact
                             path="/eleve"
-                            component={Home}
+                            component={Eleve}
+                            canActivate={() => hasAuth()}
+                        />
+                        <PrivateRoute
+                            exact
+                            path="/tutor"
+                            component={Tutor}
                             canActivate={() => hasAuth()}
                         />
                         <Route exact path="/login" component={Login}/>

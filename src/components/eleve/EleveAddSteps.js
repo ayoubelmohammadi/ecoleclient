@@ -13,14 +13,18 @@ import StepConnector from '@material-ui/core/StepConnector';
 import Button from '@material-ui/core/Button';
 import Grid from "@material-ui/core/Grid";
 import {Autocomplete} from "@material-ui/lab";
-import {FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField} from "@material-ui/core";
+import {Box, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, TextField} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchTuteurs} from "../../redux/actions/tuteurActions";
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import {saveEleve} from "../../redux/actions/eleveActions";
+import TutorSelectOptions from "./TutorSelectOptions";
+import {validEmail} from "../general/Header";
+import MuiPhoneNumber from "material-ui-phone-number";
+import {NATIONALITIES, SECTORS} from "../../config/apiConfig";
 
-export const  QontoConnector = withStyles({
+export const QontoConnector = withStyles({
     alternativeLabel: {
         top: 10,
         left: 'calc(-50% + 16px)',
@@ -191,9 +195,128 @@ function getSteps() {
     return ['tuteur', 'élève', 'Sauvgarder'];
 }
 
+function StudentForm({state, setState}) {
+    const handleChange = (e) => {
+        setState({...state, [e.target.name]: e.target.value})
+    }
+
+    // birthPlace;
+    return (<Box>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Grid container spacing={3}>
+                <Grid item xs={4}>
+                    <TextField
+                        margin={"dense"}
+                        fullWidth
+                        name={"lastName" }
+                        id={'lastName' }
+                        value={state["lastName" ]}
+                        label="Nom"
+                        variant="outlined"
+                        onChange={handleChange}
+                    />
+                </Grid>
+                <Grid item xs={4}>
+                    <TextField
+                        onChange={handleChange}
+                        margin={"dense"}
+                        fullWidth
+                        name={"firstName" }
+                        id={'firstName' }
+                        value={state["firstName" ]}
+                        label="Prenom"
+                        variant="outlined"
+                    />
+                </Grid>
+                <Grid item xs={4}>
+                    <FormControl component="fieldset" fullWidth variant={"outlined"}>
+                        <FormLabel component="legend">Sexe</FormLabel>
+                        <RadioGroup
+                            row
+                            aria-label="sexe"
+                            name="sexe"
+                            value={state && state.gender ? "true" : "false"}
+                            onChange={(value) => {
+                                setState({
+                                        ...state,
+                                        gender: value.target.value
+                                    }
+                                )
+                            }}>
+                            <FormControlLabel value={"false"} control={<Radio/>} label="Female"/>
+                            <FormControlLabel value={"true"} control={<Radio/>} label="Male"/>
+                        </RadioGroup>
+                    </FormControl>
+                </Grid>
+                <Grid item xs={4}>
+                    <KeyboardDatePicker
+                        margin={"dense"}
+                        label="Date de naissance"
+                        disableToolbar
+                        variant="inline"
+                        format="dd/MM/yyyy"
+                        value={state['birthday']}
+                        onChange={(date) => {
+                            setState({
+                                ...state,
+                                ['birthday' ]: date
+                            });
+                        }}
+                        KeyboardButtonProps={{
+                            'aria-label': 'change date',
+                        }}
+                        fullWidth
+                        inputVariant="outlined"
+                    />
+                </Grid>
+                <Grid item xs={4}>
+                    <Autocomplete
+                        value={NATIONALITIES.filter(o => o.id === state['nationality' ])[0]}
+                        options={NATIONALITIES}
+                        getOptionLabel={(option) => option.label}
+                        fullWidth
+                        onChange={(event, newValue) => {
+                            setState({...state, ['nationality' ]: newValue.id});
+                        }}
+                        renderInput={(params) =>
+                            <TextField {...params} label="Nationalite"
+                                       variant="outlined" margin={"dense"}/>}
+                    />
+                </Grid>
+                <Grid item xs={4}>
+                    <TextField
+                        onChange={handleChange}
+                        margin={"dense"}
+                        fullWidth
+                        name={"birthPlace"}
+                        id={"birthPlace"}
+                        value={state.birthPlace}
+                        label="Lieu de naissance"
+                        variant="outlined"
+                    />
+                </Grid>
+                <Grid item xs={12}>
+                    <TextField
+
+                        onChange={handleChange}
+                        margin={"dense"}
+                        fullWidth
+                        name={"health" }
+                        id={"health" }
+                        value={state.health}
+                        label="Health"
+                        multiline
+                        rows={2}
+                        variant="outlined"
+                    />
+                </Grid>
+            </Grid>
+        </MuiPickersUtilsProvider>
+    </Box>)
+}
 export default function EleveAddSteps({setOpen}) {
     const [state, setState] = useState({});
-    const tuteurs = useSelector(state => state.tuteurs.page.content);
+    console.log(state);
     const classes = useStyles();
     const [activeStep, setActiveStep] = useState(0);
     const steps = getSteps();
@@ -220,108 +343,16 @@ export default function EleveAddSteps({setOpen}) {
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} hidden={activeStep !== 0}>
-                <Grid container spacing={3}>
-                    <Grid item xs={6}>
-                        <Autocomplete
-                            id="combo-box-demo"
-                            options={tuteurs}
-                            getOptionLabel={(option) => option.identifiant}
-                            fullWidth
-                            onChange={(event, newValue) => {
-                                setState({...state, tuteur: newValue});
-                            }}
-                            renderInput={(params) => <TextField {...params} label="identifiant du tuteur"
-                                                                variant="outlined"/>}
-                        />
-                    </Grid>
-                    <Grid item xs={6}>
-                        <TextField
-                            id="outlined-read-only-input"
-                            fullWidth
-                            label="Nom et prénom"
-                            value={state && state.tuteur ? ((state.tuteur.sexe ? "M. " : "Mme. ") + state.tuteur.nom + " " + state.tuteur.prenom) : " "}
-                            InputProps={{
-                                readOnly: true,
-                            }}
-                            variant="outlined"
-                        />
-                    </Grid>
-                </Grid>
+                <TutorSelectOptions
+                    onChange={(value) => setState(
+                        {
+                            ...state,
+                            tutor: value
+                        })
+                    }/>
             </Grid>
             <Grid item xs={12} hidden={activeStep !== 1}>
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                    <Grid container spacing={3}>
-                        <Grid item xs={6}>
-                            <FormControl fullWidth>
-                                <KeyboardDatePicker
-                                    label="Date de naissance"
-                                    disableToolbar
-                                    variant="inline"
-                                    format="dd/MM/yyyy"
-                                    margin="normal"
-                                    id="date-picker-inline"
-                                    value={state.naissDate}
-                                    onChange={(date) => {
-                                        setState({
-                                            ...state,
-                                            naissDate: date
-                                        });
-                                    }}
-                                    KeyboardButtonProps={{
-                                        'aria-label': 'change date',
-                                    }}
-                                    inputVariant="outlined"
-                                />
-                            </FormControl>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <FormControl component="fieldset" fullWidth variant={"outlined"}>
-                                <FormLabel component="legend">Sexe</FormLabel>
-                                <RadioGroup
-                                    row
-                                    aria-label="sexe"
-                                    name="sexe"
-                                    value={state && state.sexe ? "true" : "false"}
-                                    onChange={(value) => {
-                                        setState({
-                                                ...state,
-                                                sexe: value.target.value
-                                            }
-                                        )
-                                    }}>
-                                    <FormControlLabel value={"false"} control={<Radio/>} label="Female"/>
-                                    <FormControlLabel value={"true"} control={<Radio/>} label="Male"/>
-                                </RadioGroup>
-                            </FormControl>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField
-                                id="nom"
-                                name="nom"
-                                fullWidth
-                                label="Nom"
-                                value={state.nom}
-                                onChange={(e) => {
-                                    setState({...state, nom: e.target.value});
-                                }}
-                                variant="outlined"
-                            />
-                        </Grid>
-                        <Grid item xs={6}>
-                            <TextField
-                                id="prenom"
-                                name="prenom"
-                                fullWidth
-                                label="Prénom"
-                                value={state.prenom}
-                                onChange={(e) => {
-                                    setState({...state, prenom: e.target.value});
-                                }}
-                                variant="outlined"
-                            />
-                        </Grid>
-                    </Grid>
-                </MuiPickersUtilsProvider>
+                <StudentForm setState={setState} state={state}/>
             </Grid>
             <Grid item xs={12} hidden={activeStep !== 2}>
                 <Grid container spacing={3}>
@@ -372,7 +403,7 @@ export default function EleveAddSteps({setOpen}) {
                     {activeStep === steps.length - 1 ? (
                         <Grid item>
                             <Button
-                                disabled={!(state.tuteur && state.tuteur.id)}
+                                disabled={!(state.tutor && state.tutor.id)}
                                 variant="contained"
                                 color="primary"
                                 onClick={handleSave}
@@ -383,7 +414,7 @@ export default function EleveAddSteps({setOpen}) {
                         </Grid>) : activeStep < steps.length - 1 ? (
                         <Grid item>
                             <Button
-                                disabled={!(state.tuteur && state.tuteur.id)}
+                                disabled={!(state.tutor && state.tutor.id)}
                                 variant="contained"
                                 color="primary"
                                 onClick={handleNext}

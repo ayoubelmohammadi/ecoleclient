@@ -4,7 +4,7 @@ import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 import {fetchEleves} from "../../redux/actions/eleveActions";
 import EleveTable from "../../components/eleve/EleveTable";
-import EleveAddd from "../../components/eleve/EleveAdd";
+import EleveAdd from "../../components/eleve/EleveAdd";
 
 export default function Eleve() {
     const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export default function Eleve() {
         <Paper>
             <Header pageName={"GESTION DES ÉLÈVES"}/>
             <EleveTable/>
-            <EleveAddd/>
+            <EleveAdd/>
         </Paper>
     );
 }
