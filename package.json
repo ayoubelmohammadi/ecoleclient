@@ -12,6 +12,7 @@
     "@material-ui/x-grid": "^4.0.0-alpha.18",
     "@material-ui/x-grid-data-generator": "^4.0.0-alpha.18",
     "@pxblue/themes": "^3.0.2",
+    "material-ui-phone-number": "^2.2.6",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",

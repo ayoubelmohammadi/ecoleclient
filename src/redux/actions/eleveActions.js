@@ -65,15 +65,16 @@ export function saveEleve(data) {
         function onSuccess() {
             return 1
         }
+
         onFetch(true);
         try {
-            await axios.post(ELEVE_BASE_URL, JSON.stringify(data), {
+            const result = await axios.post(ELEVE_BASE_URL, JSON.stringify(data), {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
             onFetch(false);
-            return onSuccess();
+            return onSuccess(result.data);
         } catch (error) {
             onFetch(false);
             onSuccess();

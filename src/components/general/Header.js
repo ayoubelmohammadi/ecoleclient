@@ -1,5 +1,13 @@
 import {Box, Grid} from "@material-ui/core";
-
+import {EMAIL_REGEX} from "../../pages/auth/Login";
+export function validEmail(address) {
+    return (
+        address &&
+        typeof address === "string" &&
+        address.length > 0 &&
+        address.match(EMAIL_REGEX)
+    );
+}
 export default function Header({pageName}) {
     return (
         <Box>

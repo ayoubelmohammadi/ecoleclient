@@ -20,7 +20,7 @@ import {KeyboardDatePicker, MuiPickersUtilsProvider} from "@material-ui/pickers"
 import DateFnsUtils from "@date-io/date-fns";
 import {saveEleve} from "../../redux/actions/eleveActions";
 
-const QontoConnector = withStyles({
+export const  QontoConnector = withStyles({
     alternativeLabel: {
         top: 10,
         left: 'calc(-50% + 16px)',
@@ -66,7 +66,7 @@ const useQontoStepIconStyles = makeStyles({
     },
 });
 
-function QontoStepIcon(props) {
+export function QontoStepIcon(props) {
     const classes = useQontoStepIconStyles();
     const {active, completed} = props;
 
@@ -139,7 +139,7 @@ const useColorlibStepIconStyles = makeStyles({
     },
 });
 
-function ColorlibStepIcon(props) {
+export function ColorlibStepIcon(props) {
     const classes = useColorlibStepIconStyles();
     const {active, completed} = props;
 

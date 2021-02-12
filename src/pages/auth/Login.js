@@ -19,7 +19,7 @@ import CyberSecurityBadge from "../../components/auth/CyberSecurityBadge";
 import {withStyles} from "@material-ui/core/styles";
 import ProductLogo from "../../components/auth/ProductLogo.js";
 
-const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+export const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 const mapStateToProps = state => {
   return {
