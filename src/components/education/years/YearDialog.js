@@ -76,5 +76,11 @@ export function AddYearButton() {
 
 export function YearSchoolSelectOption() {
     const years = useSelector(state => state.school.years.list);
+    return (
+        <Grid container justify={"center"} spacing={3}>
+            <Grid item xs={4}>
 
+            </Grid>
+        </Grid>
+    )
 }
