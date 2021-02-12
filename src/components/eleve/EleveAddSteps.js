@@ -208,9 +208,9 @@ function StudentForm({state, setState}) {
                     <TextField
                         margin={"dense"}
                         fullWidth
-                        name={"lastName" }
-                        id={'lastName' }
-                        value={state["lastName" ]}
+                        name={"lastName"}
+                        id={'lastName'}
+                        value={state["lastName"]}
                         label="Nom"
                         variant="outlined"
                         onChange={handleChange}
@@ -221,9 +221,9 @@ function StudentForm({state, setState}) {
                         onChange={handleChange}
                         margin={"dense"}
                         fullWidth
-                        name={"firstName" }
-                        id={'firstName' }
-                        value={state["firstName" ]}
+                        name={"firstName"}
+                        id={'firstName'}
+                        value={state["firstName"]}
                         label="Prenom"
                         variant="outlined"
                     />
@@ -233,9 +233,9 @@ function StudentForm({state, setState}) {
                         <FormLabel component="legend">Sexe</FormLabel>
                         <RadioGroup
                             row
-                            aria-label="sexe"
-                            name="sexe"
-                            value={state && state.gender ? "true" : "false"}
+                            aria-label="gender"
+                            name="gender"
+                            value={state && state.gender === "true" ? "true" : "false"}
                             onChange={(value) => {
                                 setState({
                                         ...state,
@@ -259,7 +259,7 @@ function StudentForm({state, setState}) {
                         onChange={(date) => {
                             setState({
                                 ...state,
-                                ['birthday' ]: date
+                                ['birthday']: date
                             });
                         }}
                         KeyboardButtonProps={{
@@ -271,12 +271,12 @@ function StudentForm({state, setState}) {
                 </Grid>
                 <Grid item xs={4}>
                     <Autocomplete
-                        value={NATIONALITIES.filter(o => o.id === state['nationality' ])[0]}
+                        value={NATIONALITIES.filter(o => o.id === state['nationality'])[0]}
                         options={NATIONALITIES}
                         getOptionLabel={(option) => option.label}
                         fullWidth
                         onChange={(event, newValue) => {
-                            setState({...state, ['nationality' ]: newValue.id});
+                            setState({...state, ['nationality']: newValue.id});
                         }}
                         renderInput={(params) =>
                             <TextField {...params} label="Nationalite"
@@ -301,8 +301,8 @@ function StudentForm({state, setState}) {
                         onChange={handleChange}
                         margin={"dense"}
                         fullWidth
-                        name={"health" }
-                        id={"health" }
+                        name={"health"}
+                        id={"health"}
                         value={state.health}
                         label="Health"
                         multiline
@@ -314,6 +314,7 @@ function StudentForm({state, setState}) {
         </MuiPickersUtilsProvider>
     </Box>)
 }
+
 export default function EleveAddSteps({setOpen}) {
     const [state, setState] = useState({});
     console.log(state);

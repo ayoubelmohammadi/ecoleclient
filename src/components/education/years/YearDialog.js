@@ -12,6 +12,7 @@ import {
 import Button from "@material-ui/core/Button";
 import {Transition} from "../../app/DeleteDialog";
 import AddIcon from "@material-ui/icons/Add";
+import {useSelector} from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     fab: {
@@ -70,5 +71,10 @@ export function AddYearButton() {
                 <AddIcon/>
             </Fab>
         </div>);
+
+}
+
+export function YearSchoolSelectOption() {
+    const years = useSelector(state => state.school.years.list);
 
 }

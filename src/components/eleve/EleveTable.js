@@ -12,17 +12,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const ROWS_PER_PAGE_OPTIONS = [10, 20, 100];
 
 function createData(eleve) {
+    console.log(eleve)
     return [
         eleve.id,
-        eleve.nom,
-        eleve.prenom,
-        eleve.sexe ? "M." : "F.",
-        new Intl.DateTimeFormat("fr-Fr").format(new Date(eleve.naissDate)),
-        eleve.tuteur.id,
-        eleve.tuteur.identifiant,
-        (eleve.tuteur.sexe ? "M. " : "Mme. ") + eleve.tuteur.nom + " " + eleve.tuteur.prenom,
-        eleve.tuteur.tel1,
-        eleve.tuteur.address
+        eleve.lastName,
+        eleve.firstName,
+        eleve.gender ? "M." : "F.",
+        new Intl.DateTimeFormat("fr-Fr").format(new Date(eleve.birthday))
     ]
 }
 
@@ -33,40 +29,20 @@ export default function EleveTable() {
             label: "ID"
         },
         {
-            name: "nom",
+            name: "lastName",
             label: "NOM"
         },
         {
-            name: "prenom",
+            name: "firstName",
             label: "PRÉNOM"
         },
         {
-            name: "sexe",
+            name: "gender",
             label: "SEXE"
         },
         {
-            name: "naissDate",
+            name: "birthday",
             label: "DATE DE NAISSANCE"
-        },
-        {
-            name: "tuteur_id",
-            label: "ID TUTEUR"
-        },
-        {
-            name: "tuteur_identifiant",
-            label: "IDENTIFIANT"
-        },
-        {
-            name: "tuteur_nom",
-            label: "NOM TUTEUR"
-        },
-        {
-            name: "tuteur_tel1",
-            label: "TEL"
-        },
-        {
-            name: "tuteur_address",
-            label: "ADRESSE"
         }
     ];
     const {content, totalElements, pageNumber} = useSelector(state => state.eleves.page);
