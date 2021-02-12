@@ -28,6 +28,7 @@ import {makeStyles, useTheme} from "@material-ui/core/styles";
 import Eleve from "./pages/eleve/Eleve";
 import Years from "./pages/education/Years";
 import Tutor from "./pages/eleve/Tutor";
+import Inscription from "./pages/fincance/Inscription";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -160,6 +161,10 @@ export default function App() {
                             <ListItemIcon> <BubbleChartIcon/></ListItemIcon>
                             <ListItemText primary={'Années scolaire'}/>
                         </ListItem>
+                        <ListItem button component={Link} to="/inscription">
+                            <ListItemIcon> <BubbleChartIcon/></ListItemIcon>
+                            <ListItemText primary={'Inscriptions'}/>
+                        </ListItem>
                     </List>
                     <Divider/>
                 </Drawer>
@@ -193,6 +198,12 @@ export default function App() {
                             exact
                             path="/tutor"
                             component={Tutor}
+                            canActivate={() => hasAuth()}
+                        />
+                        <PrivateRoute
+                            exact
+                            path="/inscription"
+                            component={Inscription}
                             canActivate={() => hasAuth()}
                         />
                         <Route exact path="/login" component={Login}/>

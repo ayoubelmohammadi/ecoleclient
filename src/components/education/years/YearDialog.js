@@ -7,12 +7,13 @@ import {
     DialogTitle,
     Fab,
     Grid,
-    makeStyles
+    makeStyles, TextField
 } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import {Transition} from "../../app/DeleteDialog";
 import AddIcon from "@material-ui/icons/Add";
 import {useSelector} from "react-redux";
+import {Autocomplete} from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
     fab: {
@@ -74,12 +75,29 @@ export function AddYearButton() {
 
 }
 
-export function YearSchoolSelectOption() {
+export function YearSchoolSelectOption({onChange}) {
     const years = useSelector(state => state.school.years.list);
+    const [state, setState] = useState();
     return (
         <Grid container justify={"center"} spacing={3}>
-            <Grid item xs={4}>
+            <Grid item xs={12}>
+                <Autocomplete
 
+                    id="combo-box-demo"
+                    value={state}
+                    options={years}
+                    getOptionLabel={(option) => option.schoolYear}
+                    fullWidth
+                    onChange={(event, newValue) => {
+                        onChange(newValue);
+                        setState(newValue);
+                    }}
+                    renderInput={(params) =>
+                        <TextField {...params}
+                                   label="Annee scolaire"
+                                   margin={"dense"}
+                                   variant="outlined"/>}
+                />
             </Grid>
         </Grid>
     )
